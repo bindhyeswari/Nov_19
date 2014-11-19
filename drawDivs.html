@@ -9,8 +9,8 @@
             background-color: green;
         }
         div {
-            height: 60px;
-            width: 100px;
+            height: 0;
+            width: 0;
             position: fixed;
             top: 100px;
             left: 100px;
@@ -31,6 +31,7 @@
         // mouseup - store a finalpos
 
         function Position(x, y) {
+
             this.x = x;
             this.y = y;
             this.toString = function () {
@@ -39,20 +40,23 @@
         }
 
         function handler(event) {
-            var pos = new Position(event.clientX, event.clientY);
+            var finalpos = new Position(event.clientX, event.clientY);
+            currentdiv.style.width = finalpos.x - initpos.x + 'px';
+            currentdiv.style.height = finalpos.y - initpos.y + 'px';
         }
 
         var initpos = new Position(0,0);
         var finalpos = new Position(0,0);
+        var currentdiv = null;
 
         document.body.addEventListener('mousedown', function (event) {
 
             console.log(event);
-
-            createElement('div', '', document.body);
-
-
-
+            initpos = new Position(event.clientX, event.clientY);
+            // create a new div element upon clicking
+            currentdiv = createElement('div', '', document.body);
+            currentdiv.style.left =  initpos.x + 'px';
+            currentdiv.style.top =  initpos.y + 'px';
             document.body.addEventListener('mousemove', handler);
         });
 
