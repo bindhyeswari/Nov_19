@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body {
+            height: 100%;
+            background-color: green;
+        }
+        div {
+            height: 60px;
+            width: 100px;
+            position: fixed;
+            top: 100px;
+            left: 100px;
+            background-color: rgba(255, 0, 0, 0.76);
+        }
+    </style>
+</head>
+<body>
+    <div class="square">
+
+    </div>
+    <script>
+
+        // mousedown mousemove mouseup - click and drag
+
+        // mousedown - store an initpos
+        // mousemove - store a finalpos
+        // mouseup - store a finalpos
+
+        function Position(x, y) {
+            this.x = x;
+            this.y = y;
+            this.toString = function () {
+                return '[' + this.x + ', ' + this.y + ']';
+            }
+        }
+
+        function handler(event) {
+            var pos = new Position(event.clientX, event.clientY);
+        }
+
+        var initpos = new Position(0,0);
+        var finalpos = new Position(0,0);
+
+        document.body.addEventListener('mousedown', function (event) {
+
+            console.log(event);
+
+            createElement('div', '', document.body);
+
+
+
+            document.body.addEventListener('mousemove', handler);
+        });
+
+        document.body.addEventListener('mouseup', function (event) {
+            document.body.removeEventListener('mousemove', handler);
+        });
+
+        function createElement(type, innerHTML, parent) {
+            var element = document.createElement(type);
+            element.innerHTML = innerHTML;
+            parent.appendChild(element);
+            return element;
+        }
+
+        // 'mousemove' event and print the x and y
+
+    </script>
+</body>
+</html>

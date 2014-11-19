@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+</head>
+<body>
+
+<!--<ul>
+    <li>Chris</li>
+    <li>Da Feng</li>
+    <li>Rice Li</li>
+</ul>-->
+
+<!--    <div>Hello World!</div>-->
+<script>
+
+    console.log('Hello World!');
+    var x = 10;
+    console.log(document.body);
+
+    // create a div element
+    // put text into it
+    // append it to the body
+
+    createElement('div', 'Hello World!', document.body);
+
+    function createElement(type, innerHTML, parent) {
+        var element = document.createElement(type);
+        element.innerHTML = innerHTML;
+        parent.appendChild(element);
+        return element;
+    }
+
+    var ul = createElement('ul', '', document.body);
+    createElement('li', 'Chris', ul);
+    createElement('li', 'Da Feng', ul);
+    createElement('li', 'Rice Li', ul);
+
+    var counter = 0;
+    var id = setInterval(function () {
+        createElement('div', ++counter, document.body);
+        if ( counter === 13 ) {
+            clearInterval(id);
+        }
+    }, 200);
+
+
+</script>
+<script>
+    console.log(x);
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        var x = 10;
+
+        function test() {
+            console.log(this === window);
+        }
+
+        function getGlobalObject() {
+            return this;
+        }
+
+        // console.log(window.window.window.window.document);
+
+        var counter = 0;
+        setInterval(function () {
+            // create a div element
+            // innerhtml = ++counter
+            // append the div to the body
+        }, 1000);
+
+
+
+        var go = getGlobalObject();
+
+
+
+        var obj = {
+            id: 32,
+            sayHello: function () { // function does not have a name - anonymous function
+                console.log(obj.id);
+                console.log(this.id); // obj behaves as the context for this function, this points to obj
+                console.log(this === obj); // this points to the context the function
+            }
+        };
+
+        obj.sayHello();
+
+    </script>
+</head>
+<body>
+<script>
+    console.log(x);
+</script>
+</body>
+</html>
