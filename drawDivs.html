@@ -6,7 +6,6 @@
     <style>
         html, body {
             height: 100%;
-            background-color: green;
         }
         div {
             height: 0;
@@ -14,7 +13,8 @@
             position: fixed;
             top: 100px;
             left: 100px;
-            background-color: rgba(255, 0, 0, 0.76);
+            background-color: rgba(142, 40, 0, 0.76);
+            border: 1px solid red;
         }
     </style>
 </head>
@@ -30,8 +30,11 @@
         // mousemove - store a finalpos
         // mouseup - store a finalpos
 
-        function Position(x, y) {
+        // todo: shiftkey - just show the border not the background color
+        // todo: fix the reverse calcs
 
+        function Position(x, y) {
+            // constructor for the position object
             this.x = x;
             this.y = y;
             this.toString = function () {
@@ -40,17 +43,19 @@
         }
 
         function handler(event) {
+            // when there is a mousemove event, store the final position
+            // calculate the height and width based on the inital position and final position
             var finalpos = new Position(event.clientX, event.clientY);
-            currentdiv.style.width = finalpos.x - initpos.x + 'px';
-            currentdiv.style.height = finalpos.y - initpos.y + 'px';
+            var min_dim = Math.min(finalpos.x - initpos.x, finalpos.y - initpos.y);
+            currentdiv.style.width = currentdiv.style.height = min_dim + 'px';
         }
 
+        // Global variables for initial and final positions, currentdiv to store the newly created div
         var initpos = new Position(0,0);
         var finalpos = new Position(0,0);
         var currentdiv = null;
 
         document.body.addEventListener('mousedown', function (event) {
-
             console.log(event);
             initpos = new Position(event.clientX, event.clientY);
             // create a new div element upon clicking

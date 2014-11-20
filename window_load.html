@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*window.onload = function() { // DOM L1
+            document.body.firstElementChild.innerHTML = 'Hello World!';
+        };*/
+
+        // <object-name>.on<event-name>
+
+        // todo: read 13.3.4
+
+        console.log(document.readyState);
+        var start = new Date();
+
+        window.addEventListener('load', function () { // DOM L2
+            document.body.firstElementChild.innerHTML = 'Hello World 2 !';
+            // when all asynchronous data has loaded
+            console.log('The load event took ' + ((new Date()) - start) + 'ms');
+        });
+
+        window.addEventListener('DOMContentLoaded', function () {
+            // fires after the DOM has been parsed + some other stuff
+            console.log('The DOMContentLoaded event took ' + ((new Date()) - start) + 'ms');
+        });
+
+        document.addEventListener('readystatechange', function () {
+            //console.log(document.readyState);
+            console.log('The ' + document.readyState +' event took ' + ((new Date()) - start) + 'ms');
+        });
+    </script>
+</head>
+<body>
+    <img src="http://img.lum.dolimg.com/v1/images/Darth-Vader_6bda9114.jpeg?region=0%2C23%2C1400%2C785&width=768" alt="darth_vader"/>
+    <div></div>
+</body>
+</html>
